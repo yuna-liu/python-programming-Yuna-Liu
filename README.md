@@ -1,22 +1,9 @@
 # Programmering med Python (2021)
 This is a fundamental Python course with focus of learning important programming concepts in order to solve various problems by writing Python programs. All lecture codes can be found in the course [Github repo][ghr].
 
-[ghr]: https://github.com/kokchun/Programmering-med-Python-21
+[ghr]: https://github.com/yuna-liu/python-programming-Yuna-Liu
 
 
-<!-- ## Contents
-  - [Schedule](#schedule)
-  - [Resources](#resources) <details> <summary> Weeks </summary>
-    - (#week1)
-    - (#week2)
-    - [Week 36](#week3)
-    - [Week 37](#week4)
-    - [Week 38](#week5)
-    - [Week 39](#week6)
-    - [Week 40](#week7)
-    - [Week 41](#week8)
-
-</details> -->
 
 ## Schedule
 
