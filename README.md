@@ -7,8 +7,8 @@ This is a fundamental Python course with focus of learning important programming
 <!-- ## Contents
   - [Schedule](#schedule)
   - [Resources](#resources) <details> <summary> Weeks </summary>
-    - [Week 34](#week1)
-    - [Week 35](#week2)
+    - (#week1)
+    - (#week2)
     - [Week 36](#week3)
     - [Week 37](#week4)
     - [Week 38](#week5)
@@ -24,14 +24,14 @@ The schedule of this course is:
 
 |     Week     | Content                                                       |
 | :----------: | ------------------------------------------------------------- |
-| [Week 34][week1] | installation, git, vscode, variables, I/O, if, while, lab 1   |
-| [Week 35][week2] | for, lists, random, matplotlib, pipenv                        |
-| [Week 36][week3] | strings, functions, lab 2                                     |
-| [Week 37][week4] | exception handling, file handling, dictionary, lab 2          |
-| [Week 38][week5] | OOP: class, object, attributes, properties, decorators, lab 3 |
-| [Week 39][week6] | OOP: inheritance, polymorphism, docstring, lab 3              |
-| [Week 40][week7] | repetition                                                    |
-| [Week 41][week8] | written exam                                                  |
+| [week1] | installation, git, vscode, variables, I/O, if, while, lab 1   |
+| [week2] | for, lists, random, matplotlib, pipenv                        |
+| [week3] | strings, functions, lab 2                                     |
+| [week4] | exception handling, file handling, dictionary, lab 2          |
+| [week5] | OOP: class, object, attributes, properties, decorators, lab 3 |
+| [week6] | OOP: inheritance, polymorphism, docstring, lab 3              |
+| [week7] | repetition                                                    |
+| [week8] | written exam                                                      |
 
 
 
