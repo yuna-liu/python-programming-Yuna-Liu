@@ -33,7 +33,7 @@ Many exercises and lecture materials are in form of Jupyter notebooks with **.ip
 
 
 
-## How to set up working enviroment
+# How to set up working enviroment
 
 
 ## 1. git, github and vs code
