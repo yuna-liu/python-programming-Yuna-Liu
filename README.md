@@ -80,6 +80,6 @@ If Pipfile.lock is not seen, then one should fix add path through setting in sys
 
 "pipenv install ipykernel", to fix jupyter.
 
-3.5 Open a jupyter file that you are going to work with. Choose the pipenv under your repo that stated in 3.1 as terminal.
+3.5 Open a jupyter file that you are going to work with. Choose the pipenv under your repo that stated in 3.1 as kernel.
 
 3.6 import matplotlib.pyplot as plt
