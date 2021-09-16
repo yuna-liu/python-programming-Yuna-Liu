@@ -1,13 +1,13 @@
-Databaser	25p
-Databehandling	25p
-Djup Maskininlärning	40p
-Examensarbete	15p
-Introduktionskurs till AI	5p
-LIA 1	40p
-LIA 2	70p
-Maskininlärning	45p
-Praktisk maskininlärning och projektmetodik	45p
-Programmering med Python	40p
-Praktisk maskininlärning och projektmetodik	45p
-Statistiska metoder	 30p
-Visualisering, presentationer och storytelling	 20p
+Databases 25p
+Data processing 25p
+Deep Machine Learning 40p
+Degree project 15p
+Introductory course to AI 5p
+LIA 1 40p
+LIA 2 70p
+Machine learning 45p
+Practical machine learning and project methodology 45p
+Programming with Python 40p
+Practical machine learning and project methodology 45p
+Statistical methods 30p
+Visualization, presentations and storytelling 20p
