@@ -10,7 +10,7 @@ class Vector:
         if len(numbers) <= 0:
             raise ValueError("Vectors can't be empty")
 
-        self.numbers = tuple(float(number) for number in numbers)
+        self._numbers = tuple(float(number) for number in numbers)
 
     @property
     def numbers(self) -> tuple:
