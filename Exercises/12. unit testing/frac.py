@@ -86,3 +86,4 @@ class Frac:
         add_denominator = self.denominator*other.denominator
         add_frac = Frac(add_nominator, add_denominator)
         return add_frac.simplify()
+        
