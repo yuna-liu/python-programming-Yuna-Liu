@@ -66,12 +66,12 @@ class TestFrac(unittest.TestCase):
     def test_truediv(self):
         f_1 = self.create_frac()
         f_2 = Frac(1,4)
-        self.assertAlmostEqual((f_1/f_2), Frac(2,1))
+        self.assertEqual(f_1/f_2, Frac(2,1))
 
     def test_mul(self):
         f_1 = self.create_frac()
         f_2 = Frac(1,4)
-        self.assertEqual((f_1*f_2), Frac(1,8))
+        self.assertEqual(f_1*f_2, Frac(1,8))
 
 
 
