@@ -1,7 +1,5 @@
-from math import gcd
-
 class Frac:
-    def __init__(self, nominator, denominator):
+    def __init__(self, nominator, denominator=1): # the default is denominator=1
         self.nominator = nominator
         self.denominator = denominator
 
@@ -31,25 +29,38 @@ class Frac:
 
     
     def simplify(self): # simplifies to most simple form unless value is given
-        greatest_common_denominator = gcd(self.nominator, self.denominator)
-        self.nominator /= greatest_common_denominator
-        self.denominator /= greatest_common_denominator
-        return Frac(self.nominator, self.denominator)
+        if self.nominator==0:
+            return 0
 
+        elif self.nominator == self.denominator:
+            return 1
+
+        elif self.denominator % self.nominator == 0:
+            result = self.denominator//self.nominator
+            return Frac(1, result)
+        else: 
+            return self
+
+ 
     def __str__(self): # represent the fraction in a neat way for printing
         return f"{self.nominator}/{self.denominator}"
 
     def mixed(self): # represent the fraction in mixed terms 
-        if self.nominator >= self.denominator:
-            result_part1 = str(self.nominator//self.denominator)
-            result_part2 = str(self.nominator%self.denominator)
-            return (f"{self.nominator}/{self.denominator} --> {result_part1} {result_part2}/{self.denominator} (mixed)" )
+        if self.nominator > self.denominator:
+            whole_number_part = self.nominator//self.denominator
+            fraction_part = self.nominator%self.denominator
+            return (f"{whole_number_part} {fraction_part}/{self.denominator} (mixed)" )
+        else:
+            return self.simplify()
         
     def __eq__(self, other): # checks equality by overloading ==
-        if self.simplify() == other.simplify():
-            return(f"{self.nominator}/{self.denominator} == {other.nominator}/{other.denominator}  --> True")
+        self_simplied = self.simplify()
+        other_simplied = other.simplify()
+
+        if  self_simplied.nominator == other_simplied.nominator  and self_simplied.denominator == other_simplied.denominator:
+            return True
         else:
-            return(f"{self.nominator}/{self.denominator} == {other.nominator}/{other.denominator}  --> False")
+            return False
     
     def __add__(self, other):
         add_nominator = self.nominator*other.denominator+other.nominator*self.denominator
@@ -58,25 +69,25 @@ class Frac:
         #print(add_denominator)
         add_frac = Frac(add_nominator, add_denominator)
         #print(add_frac)
-        return (add_frac) 
+        return add_frac.simplify() 
    
     def __sub__(self, other):
         add_nominator = self.nominator*other.denominator - other.nominator*self.denominator
         add_denominator = self.denominator * other.denominator
         add_frac = Frac(add_nominator, add_denominator)
-        return (add_frac)
+        return add_frac.simplify()
     
     def __truediv__(self, other):
         add_nominator = self.nominator*other.denominator
         add_denominator = self.denominator*other.nominator
         add_frac = Frac(add_nominator, add_denominator)
-        return (add_frac)
+        return add_frac.simplify()
 
     def __mul__(self, other):
         add_nominator = self.nominator*other.nominator
         add_denominator = self.denominator*other.denominator
         add_frac = Frac(add_nominator, add_denominator)
-        return (add_frac)
+        return add_frac.simplify()
 
 # test negative numbers
 try:
@@ -116,31 +127,4 @@ try:
     print(f"Simply {Frac(0,18)} gets: {Frac(0,18).simplify()}")
 except ValueError as err:
     print(err)
-
-
-frac1 = Frac(8,5)
-print(frac1)
-print(f"Simply {frac1} gets: {frac1.simplify()}")
-
-frac2 = Frac(4,8)
-print(frac2)
-print(f"Simply {frac2} gets: {frac2.simplify()}")
-
-print(f"{Frac(1,2)} + {Frac(1,3)} = {Frac(1,2) + Frac(1,3)}")
-
-print(f"{Frac(1,2)} - {Frac(1,3)} = {Frac(1,2) - Frac(1,3)}")
-
-print(f"{Frac(7,6).mixed()}") 
-
-print(f"{Frac(3,1)}*{Frac(1,2)} = {Frac(3,1)*Frac(1,2)}") 
-
-print(f"{Frac(1,2)}*{Frac(3,1)} = {Frac(1,2)*Frac(3,1)}") 
-
-print(f"{Frac(1,4)}+{Frac(2,1)} = {Frac(1,4)+Frac(2,1)}") 
-
-print(f"{Frac(1,4)}/{Frac(1,2)} = {Frac(1,4)/Frac(1,2)}") 
-
-print(f"{Frac(2,4)}=={Frac(1,2)} --> {Frac(2,4)==Frac(1,2)}") 
-
-print(f"{Frac(3,4)}+={Frac(2,1)} = {Frac(3,4)+Frac(2,1)}")
 
