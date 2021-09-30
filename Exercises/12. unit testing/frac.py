@@ -1,3 +1,4 @@
+import math 
 class Frac:
     def __init__(self, nominator, denominator=1): # the default is denominator=1
         self.nominator = nominator
@@ -27,19 +28,16 @@ class Frac:
             raise ValueError(f"Denominator should be positive number, not {value}")
         self._denominator = value
 
-    
     def simplify(self): # simplifies to most simple form unless value is given
-        if self.nominator==0:
+        highest_common_factor = math.gcd(self.nominator, self.denominator)
+        nominator_simplified = int(self.nominator / highest_common_factor)
+        denominator_simplified = int(self.denominator / highest_common_factor)
+        if nominator_simplified == 0:
             return 0
-
-        elif self.nominator == self.denominator:
+        elif nominator_simplified == denominator_simplified:
             return 1
-
-        elif self.denominator % self.nominator == 0:
-            result = self.denominator//self.nominator
-            return Frac(1, result)
         else: 
-            return self
+            return Frac(nominator_simplified, denominator_simplified)
 
  
     def __str__(self): # represent the fraction in a neat way for printing
@@ -88,43 +86,3 @@ class Frac:
         add_denominator = self.denominator*other.denominator
         add_frac = Frac(add_nominator, add_denominator)
         return add_frac.simplify()
-
-# test negative numbers
-try:
-    frac1 = Frac(4,-8)
-except TypeError as err:
-    print(err)
-except ValueError as err:
-    print(err)
-
-
-# test str
-try:
-    frac1 = Frac("4",8)
-except TypeError as err:
-    print(err)
-except ValueError as err:
-    print(err)
-
-# test denominator should not be zero
-try:        
-    frac_test = Frac(16,0)
-except ValueError as err:
-    print(err)
-
-try:
-    print(f"Simply gets: {Frac(16,0).simplify()}")
-except ValueError as err:
-    print(err)
-
-# test nominator=0
-try:        
-    frac_test = Frac(0,18)
-except ValueError as err:
-    print(err)
-
-try:
-    print(f"Simply {Frac(0,18)} gets: {Frac(0,18).simplify()}")
-except ValueError as err:
-    print(err)
-
