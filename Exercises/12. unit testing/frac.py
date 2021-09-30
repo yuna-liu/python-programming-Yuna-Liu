@@ -1,3 +1,5 @@
+from math import gcd
+
 class Frac:
     def __init__(self, nominator, denominator):
         self.nominator = nominator
@@ -29,23 +31,11 @@ class Frac:
 
     
     def simplify(self): # simplifies to most simple form unless value is given
-        if self.nominator==0:
-            return ("0")
-            
-        elif self.nominator !=0 and self.nominator >= self.denominator:
-            result_part1 = str(self.nominator//self.denominator)
-            result_part2 = str(self.nominator%self.denominator)
-            return (f"{result_part1} {result_part2}/{self.denominator}" )
+        greatest_common_denominator = gcd(self.nominator, self.denominator)
+        self.nominator /= greatest_common_denominator
+        self.denominator /= greatest_common_denominator
+        return Frac(self.nominator, self.denominator)
 
-        elif self.nominator !=0 and self.nominator < self.denominator:
-            if self.denominator % self.nominator == 0:
-                result = self.denominator//self.nominator
-                return (f"1/{result}" )
-            else:
-                return (f"{self.nominator}/{self.denominator}" )
-
-
-    
     def __str__(self): # represent the fraction in a neat way for printing
         return f"{self.nominator}/{self.denominator}"
 
