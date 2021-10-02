@@ -1,5 +1,6 @@
 
 from geometry_shape import Shape
+from math import pi
 
 class Circle(Shape):
     def __init__(self, x: float, y: float, radius: float, type="circle") -> None:
