@@ -30,14 +30,14 @@ class Shape:
         else:
             return value
 
-    @staticmethod
+    """@staticmethod
     def validate_non_negative_number(value):
         if not isinstance(value, (int, float)):
             raise TypeError (f"integer or float number needed here, not {type(value)}.")
         if value < 0:
             raise ValueError (f"non-negative number needed here. {value} is negative.")
         else:
-            return value
+            return value """
 
     @staticmethod
     def validate_positive_number(value):
@@ -52,10 +52,9 @@ class Shape:
     # by default, z1=0 and z2=0 to get 2D distance.
     @staticmethod
     def eu_dis(x1:float, x2:float, y1:float, y2:float, z1=0, z2=0) -> float:
-        x2_valid = Shape.validate_number(x2)
-        y2_valid = Shape.validate_number(y2)
-        z2_valid = Shape.validate_number(z2)
-        return sqrt((x2_valid-x1)**2+(y2_valid-y1)**2+(z2_valid-z1)**2)
+        point = (x2, y2, z2)
+        coordinates= [Shape.validate_number(coordinate) for coordinate in point]
+        return sqrt((coordinates[0]-x1)**2+(coordinates[1]-y1)**2+(coordinates[2]-z1)**2)
 
     # to calculate the horizontal or vertical distance of the midpoint and any point
     # for example: abs(x2-x1) is the horizontal distance between two x-coordinates
