@@ -4,17 +4,16 @@ from math import pi
 
 class Circle(Shape):
     def __init__(self, x: float, y: float, radius: float, type="circle") -> None:
-        super().__init__(x,y,type)
+        super().__init__(x,y, type)
         self.radius = radius
     
-
     @property
     def radius(self) -> float:
         return self._radius
     
     @radius.setter
     def radius(self, value: float) -> None:
-        self._radius = Shape.validate_non_negative_number(value)
+        self._radius = Shape.validate_positive_number(value)
     
     def area(self) -> float:
         return float(pi*(self.radius**2))
@@ -31,6 +30,12 @@ class Circle(Shape):
         else:
             return False
  
+    # to compare whether two shapes have the same area
+    def __eq__(self, other) -> bool:
+        if self.type == other.type and self.radius() == other.radius():
+            return True
+        else:
+            return False
 
     def __repr__(self) -> str:
         return f"{self.type} with center point: ({self.x}, {self.y}) with radius: {self.radius}" 
