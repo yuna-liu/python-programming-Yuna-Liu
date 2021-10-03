@@ -1,12 +1,12 @@
 from geometry_shape import Shape
 
 class Rectangle(Shape):
-    def __init__(self, x: float, y: float, side1: float, side2: float, type="rectangle") -> None: 
+    def __init__(self, x: float, y: float, side1: float, side2: float) -> None: 
 
         #side1 is the length on the horizontal line of the rectangle.
         #side2 is the length on the vertical line of the rectangle.
 
-        super().__init__(x,y,type)
+        super().__init__(x,y)
         self.side1 = side1
         self.side2 = side2
     
@@ -41,10 +41,10 @@ class Rectangle(Shape):
             return False
     
     def __eq__(self, other) -> bool:
-        if self.type == other.type and self.area() == other.area() and self.side1 == other.side1 and self.side2 == other.side2:
+        if type(self) == type(self) and self.area() == other.area() and self.side1 == other.side1 and self.side2 == other.side2:
             return True
         else:
             return False
 
     def __repr__(self) -> str:
-        return f"{self.type} with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
+        return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
