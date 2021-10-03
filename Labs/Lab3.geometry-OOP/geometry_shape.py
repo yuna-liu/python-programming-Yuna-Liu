@@ -68,4 +68,4 @@ class Shape:
         self._y =  self.y + Shape.validate_number(y_move)
 
     def __repr__(self) -> str:
-        return f"{self.type} with center point: ({self.x}, {self.y})."
+        return f"Shape with center point: ({self.x}, {self.y})."

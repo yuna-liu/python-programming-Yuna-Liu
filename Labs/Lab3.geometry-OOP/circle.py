@@ -3,8 +3,8 @@ from geometry_shape import Shape
 from math import pi
 
 class Circle(Shape):
-    def __init__(self, x: float, y: float, radius: float, type="circle") -> None:
-        super().__init__(x,y, type)
+    def __init__(self, x: float, y: float, radius: float) -> None:
+        super().__init__(x,y)
         self.radius = radius
     
     @property
@@ -32,10 +32,10 @@ class Circle(Shape):
  
     # to compare whether two shapes have the same area
     def __eq__(self, other) -> bool:
-        if self.type == other.type and self.radius() == other.radius():
+        if type(self) == type(other) and self.area() == other.area():
             return True
         else:
             return False
 
     def __repr__(self) -> str:
-        return f"{self.type} with center point: ({self.x}, {self.y}) with radius: {self.radius}" 
+        return f"Circle with center point: ({self.x}, {self.y}) with radius: {self.radius}" 
