@@ -2,10 +2,9 @@ from math import pi
 from math import sqrt
 
 class Shape:
-    def __init__(self, x: float, y:float, type:str) -> None: #x: x coordinate, y: y coordinate
+    def __init__(self, x: float, y:float) -> None: #x: x coordinate, y: y coordinate
         self.x = x
         self.y = y
-        self.type = type
 
     @property
     def x(self)-> float:
@@ -15,10 +14,6 @@ class Shape:
     def y(self) -> float:
         return self._y
 
-    @property
-    def type(self) -> str:
-        return self._type
-
     @x.setter
     def x(self, value: float) -> None:
         self._x = Shape.validate_number(value)
@@ -26,10 +21,6 @@ class Shape:
     @y.setter
     def y(self, value: float) -> None:
         self._y = Shape.validate_number(value)
-
-    @ type.setter
-    def type(self, value: str) -> None:
-        self._type = Shape.validate_str(value)
 
     @staticmethod
     def validate_number(value):
@@ -44,13 +35,6 @@ class Shape:
             raise TypeError (f"integer or float number needed here, not {type(value)}.")
         if value <= 0:
             raise ValueError (f"positive number needed here. {value} is not ok.")
-        else:
-            return value
-
-    @staticmethod
-    def validate_str(value):
-        if not isinstance(value, str):
-            raise TypeError (f"string needed here, {type(value)} is not ok.")
         else:
             return value
 
@@ -72,6 +56,11 @@ class Shape:
         n2_valid = Shape.validate_number(n2)
         return abs(n1-n2_valid)
 
+    def __eq__(self, other) -> bool:
+        if type(self) == type(other) and self.x == other.y and self.y == other.y:
+            return True
+        else:
+            return False
     
     # a translation method to move x by x_move, and move y by y_move
     def translate(self, x_move:float, y_move:float) -> None:
