@@ -1,8 +1,8 @@
 from geometry_shape import Shape
 
 class Cube(Shape):
-    def __init__(self, x: float, y: float, z:float, side: float, type="cube") -> None:
-        super().__init__(x,y,type)
+    def __init__(self, x: float, y: float, z:float, side: float) -> None:
+        super().__init__(x,y)
         self.z = z
         self.side = side
 
@@ -39,6 +39,12 @@ class Cube(Shape):
     def translate(self, x_move:float, y_move:float,z_move:float) -> None:
         super().translate(x_move, y_move)
         self._z = self.z + Shape.validate_number(z_move) 
+
+    def __eq__(self, other) -> bool:
+        if type(self) == type(self) and self.side() == other.side():
+            return True
+        else:
+            return False
  
     def __repr__(self) -> str:
-        return f"{self.type} with center point: ({self.x}, {self.y}, {self.z}) with side length: {self.side}"   
+        return f"Cube with center point: ({self.x}, {self.y}, {self.z}) with side length: {self.side}"   
