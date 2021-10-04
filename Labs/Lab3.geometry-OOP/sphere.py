@@ -34,10 +34,7 @@ class Sphere(Shape):
     # x_point, y_point, z_point are checked valid through Shape.eu_dis() method.
     def is_inside(self,x_point:float, y_point:float, z_point:float) -> bool:
         mid_to_point = Shape.eu_dis(self.x, x_point, self.y, y_point, self.z, z_point)
-        if mid_to_point <= self.radius:
-            return True
-        else:
-            return False
+        return mid_to_point <= self.radius
 
     def translate(self, x_move:float, y_move:float,z_move:float) -> None:
         super().translate(x_move, y_move)

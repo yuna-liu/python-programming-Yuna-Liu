@@ -57,10 +57,8 @@ class Shape:
         return abs(n1-n2_valid)
 
     def __eq__(self, other) -> bool:
-        if type(self) == type(other) and self.x == other.y and self.y == other.y:
-            return True
-        else:
-            return False
+        return type(self) == type(other) and self.x == other.y and self.y == other.y
+    
     
     # a translation method to move x by x_move, and move y by y_move
     def translate(self, x_move:float, y_move:float) -> None:
