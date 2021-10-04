@@ -26,8 +26,12 @@ class TestShape(unittest.TestCase):
             Shape.validate_number("two")
 
     def test_validate_positive_number(self):
-        with self.assertRaises(ValueError):
-            Shape.validate_positive_number (0)
+        list_of_test = [0, -1]
+        for test_one in list_of_test:
+            with self.assertRaises(ValueError):
+                shape = Shape(test_one)
+
+    def test_validate_str_number(self):       
         with self.assertRaises(TypeError):
             Shape.validate_positive_number ("one")
 
