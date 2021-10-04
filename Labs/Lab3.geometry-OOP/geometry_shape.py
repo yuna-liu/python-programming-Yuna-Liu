@@ -26,8 +26,7 @@ class Shape:
     def validate_number(value):
         if not isinstance(value, (int,float)):
             raise TypeError (f"integer or float needed here, not {type(value)}.")
-        else:
-            return value
+        return value
 
     @staticmethod
     def validate_positive_number(value):
@@ -35,16 +34,16 @@ class Shape:
             raise TypeError (f"integer or float number needed here, not {type(value)}.")
         if value <= 0:
             raise ValueError (f"positive number needed here. {value} is not ok.")
-        else:
-            return value
+        return value
 
     # calculate euclidean distance between two points: self(x1, y1, z1) and any point(x2, y2, z2)
     # by default, z1=0 and z2=0 to get 2D distance.
     @staticmethod
     def eu_dis(x1:float, x2:float, y1:float, y2:float, z1=0, z2=0) -> float:
-        point = (x2, y2, z2)
-        coordinates= [Shape.validate_number(coordinate) for coordinate in point]
-        return sqrt((coordinates[0]-x1)**2+(coordinates[1]-y1)**2+(coordinates[2]-z1)**2)
+        x2 = Shape.validate_number(x2)
+        y2 = Shape.validate_number(y2)
+        z2 = Shape.validate_number(z2)
+        return sqrt((x2-x1)**2+(y2-y1)**2+(z2-z1)**2)
 
     # to calculate the horizontal or vertical distance of the midpoint and any point
     # for example: abs(x2-x1) is the horizontal distance between two x-coordinates
@@ -57,7 +56,7 @@ class Shape:
         return abs(n1-n2_valid)
 
     def __eq__(self, other) -> bool:
-        return type(self) == type(other) and self.x == other.y and self.y == other.y
+        pass
     
     
     # a translation method to move x by x_move, and move y by y_move

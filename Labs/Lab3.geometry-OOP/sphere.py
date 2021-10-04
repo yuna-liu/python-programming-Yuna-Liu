@@ -24,11 +24,11 @@ class Sphere(Shape):
     def radius(self, value: float) -> None:
         self._radius = Shape.validate_positive_number(value)
     
-    def area(self) -> float:
+    def surface_area(self) -> float:
         return 4*pi*self.radius**2
     
-    def perimeter(self) -> float:
-        return 2*pi*self.radius
+    def volume(self) -> float:
+        return (4/3)*pi*self.radius**3
 
     # return whether a point is in a shape
     # x_point, y_point, z_point are checked valid through Shape.eu_dis() method.
@@ -42,10 +42,7 @@ class Sphere(Shape):
 
     # to compare whether two shapes have the same area
     def __eq__(self, other) -> bool:
-        if type(self) == type(other) and self.radius() == other.radius():
-            return True
-        else:
-            return False
+        return type(self) == type(other) and self.radius() == other.radius()
  
     def __repr__(self) -> str:
         return f"Sphere with center point: ({self.x}, {self.y}, {self.z}) with radius: {self.radius}"  

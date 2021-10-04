@@ -35,16 +35,10 @@ class Rectangle(Shape):
     # return whether a point is in a shape
     # x_point and y_point are checked valid through method Shape.hori_ver_dis()
     def is_inside(self, x_point:float, y_point:float) -> bool:
-        if Shape.hori_ver_dis(self.x, x_point) <= 0.5*self.side1 and Shape.hori_ver_dis(self.y, y_point) <= 0.5*self.side2:
-            return True
-        else:
-            return False
+        return Shape.hori_ver_dis(self.x, x_point) <= 0.5*self.side1 and Shape.hori_ver_dis(self.y, y_point) <= 0.5*self.side2
     
     def __eq__(self, other) -> bool:
-        if type(self) == type(self) and self.area() == other.area() and self.side1 == other.side1 and self.side2 == other.side2:
-            return True
-        else:
-            return False
+        return type(self) == type(self) and self.area() == other.area() and (self.side1 == other.side1 or self.side1 == other.side2)
 
     def __repr__(self) -> str:
         return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
