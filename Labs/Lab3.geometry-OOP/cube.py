@@ -53,7 +53,7 @@ class Cube(Shape):
 
     def __eq__(self, other) -> bool:
         """Return if two spheres are equal. The conditions are they should be the same type, and the sides are equal"""
-        return type(self) == type(self) and self.side() == other.side()
+        return type(self) == type(self) and self.side == other.side
  
     def __repr__(self) -> str:
         """Present the instance"""

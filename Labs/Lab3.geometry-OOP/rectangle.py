@@ -49,7 +49,7 @@ class Rectangle(Shape):
         """The conditions are: (1) both shapes have the same type"""
         """(2) both shapes have the same area"""
         """(3) meanwhile the side1 of the first shape should be the same as either the side1 or side2 of the other shape."""
-        return (type(self) == type(self)) and (self.area() == other.area()) and ((self.side1 == other.side1) or (self.side1 == other.side2))
+        return type(self) == type(self) and self.area() == other.area() and (self.side1 == other.side1 or self.side1 == other.side2)
 
     def __repr__(self) -> str:
         """Present the instance"""

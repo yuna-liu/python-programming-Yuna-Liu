@@ -49,7 +49,7 @@ class Sphere(Shape):
 
     def __eq__(self, other) -> bool:
         """Return if two spheres are equal. The conditions are they should be the same type, and the radius are equal"""
-        return (type(self) == type(other)) and (self.radius == other.radius)
+        return type(self) == type(other) and self.radius == other.radius
  
     def __repr__(self) -> str:
         """Present the instance"""
