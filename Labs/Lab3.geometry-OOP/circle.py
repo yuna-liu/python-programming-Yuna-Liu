@@ -34,7 +34,7 @@ class Circle(Shape):
     # to compare whether two shapes have the same area
     def __eq__(self, other) -> bool:
         """Return if two circles are equal. The conditions are they have the same type and the same radius"""
-        return type(self) == type(other) and self.radius() == other.radius()
+        return (type(self) == type(other)) and (self.radius == other.radius)
 
     def __repr__(self) -> str:
         """Present the instance"""

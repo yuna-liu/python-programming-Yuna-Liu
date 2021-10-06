@@ -4,6 +4,7 @@ from rectangle import Rectangle
 from cube import Cube
 from sphere import Sphere
 from math import sqrt
+from math import pi
 import unittest
 
 class TestShape(unittest.TestCase):
@@ -59,10 +60,40 @@ class TestCircle(unittest.TestCase):
         self.x, self.y = 0, 0
         self.radius = 1
 
-    def create_shape(self) -> "Shape":
-        return Shape(self.x, self.y)
+    def create_circle(self) -> "Circle":
+        return Circle(self.x, self.y, self.radius)
 
+    def test_create_circle(self):
+        circle_1 = self.create_circle()
+        self.assertEqual((circle_1.x, circle_1.y, circle_1.radius),(self.x, self.y, self.radius))
 
+    def test_create_circle_str_radius(self):
+        with self.assertRaises(TypeError):
+           Circle(0,0, "1")
+
+    def test_create_circle_negative_and_zero_radius(self):
+        for one_test in [-1, 0]:
+            with self.assertRaises(ValueError):
+                Circle(0,0, one_test)
+    
+    def test_area(self):
+        circle_1 = Circle(0,0,1)
+        self.assertEqual(circle_1.area(), pi*(self.radius)**2)
+
+    def test_perimeter(self):
+        circle_1 = Circle(0,0,1)
+        self.assertEqual(circle_1.perimeter(), 2*pi*self.radius)
+
+    def test_is_inside(self):
+        circle_1 = Circle(0,0,1)
+        self.assertEqual(circle_1.is_inside(0.5,0.5), True)
+        circle_2 = Circle(1,1,1)
+        self.assertEqual(circle_2.is_inside(0.1,0.1), False)
+
+    def test__eq__(self):
+        circle_1 = Circle(0,0,1)
+        circle_2 = Circle(1,1,1)
+        self.assertEqual(circle_1==circle_2, True)
 
 if __name__ == "__main__":
     unittest.main()
