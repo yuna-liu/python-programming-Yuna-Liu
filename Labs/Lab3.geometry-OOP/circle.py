@@ -4,7 +4,7 @@ from math import pi
 
 class Circle(Shape):
     def __init__(self, x: float, y: float, radius: float) -> None:
-        """A subclass to represent circle with x-coordinate, y-coordinate and radius"""
+        """A subclass to represent circle with (x, y) of the midpoint and radius"""
         super().__init__(x,y)
         self.radius = radius
     
