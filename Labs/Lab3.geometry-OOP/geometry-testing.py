@@ -93,7 +93,55 @@ class TestCircle(unittest.TestCase):
     def test__eq__(self):
         circle_1 = Circle(0,0,1)
         circle_2 = Circle(1,1,1)
+        circle_3 = Circle(1,1,2)
         self.assertEqual(circle_1==circle_2, True)
+        self.assertEqual(circle_1==circle_3, False)
 
+class TestRectangle(unittest.TestCase):
+    def setUp(self) -> None:
+        self.x, self.y = 0, 0
+        self.side1, self.side2 = 1,2
+
+    def create_rectangle(self) -> "Rectangle":
+        return Rectangle(self.x, self.y, self.side1, self.side2)
+
+    def test_create_rectangle(self):
+        rectangle_1 = self.create_rectangle()
+        self.assertEqual((rectangle_1.x, rectangle_1.y, rectangle_1.side1, rectangle_1.side2),(self.x, self.y, self.side1, self.side2))
+
+    def test_create_rectangle_str_sides(self):
+        with self.assertRaises(TypeError):
+            Rectangle(0,0, "1", 2)
+            Rectangle(0,0, 1, "2")
+
+    def test_create_rectangle_negative_and_zero_sides(self):
+        for one_test in [-1, 0]:
+            with self.assertRaises(ValueError):
+                Rectangle(0,0, one_test, 2)
+                Rectangle(0,0, 1, one_test)
+    
+    def test_area(self):
+        rectangle_1 = self.create_rectangle()
+        self.assertEqual(rectangle_1.area(), self.side1*self.side2)
+
+    def test_perimeter(self):
+        rectangle_1 = self.create_rectangle()
+        self.assertEqual(rectangle_1.perimeter(), 2*(self.side1+self.side2))
+
+    def test_is_inside(self):
+        rectangle_1 = Rectangle(0,0,1,2)
+        self.assertEqual(rectangle_1.is_inside(0.5,0.5), True)
+        rectangle_2 = Rectangle(1,1,1,2)
+        self.assertEqual(rectangle_2.is_inside(0.1,0.1), False)
+
+    def test__eq__(self):
+        rectangle_1 = Rectangle(0,0,1,2)
+        rectangle_2 = Rectangle(1,1,1,2)
+        rectangle_3 = Rectangle(0,0,2,1)
+        rectangle_4 = Rectangle(0,0,1,1)
+        self.assertEqual(rectangle_1==rectangle_2, True)
+        self.assertEqual(rectangle_1==rectangle_3, True)
+        self.assertEqual(rectangle_1==rectangle_4, False)
+        
 if __name__ == "__main__":
     unittest.main()
