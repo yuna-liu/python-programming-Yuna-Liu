@@ -11,22 +11,22 @@ class Rectangle(Shape):
     
     @property
     def side1(self) -> float:
-        """ Read-only property, can't set the side1"""
+        """Read-only property, can't set the side1"""
         return self._side1
     
     @side1.setter
     def side1(self, value: float) -> None:
-        """ Setter for for side1 with error handling"""
+        """Setter for side1 with error handling"""
         self._side1 = Shape.validate_positive_number(value)
 
     @property
     def side2(self) -> float:
-        """ Read-only property, can't set the side2"""
+        """Read-only property, can't set the side2"""
         return self._side2
     
     @side2.setter
     def side2(self, value: float) -> None:
-        """ Setter for for side2 with error handling"""
+        """Setter for side2 with error handling"""
         self._side2 = Shape.validate_positive_number(value)
     
     def area(self) -> float:
@@ -38,13 +38,19 @@ class Rectangle(Shape):
         return 2*(self.side1+self.side2)
     
     def is_inside(self, x_point:float, y_point:float) -> bool:
-        """return whether a point is in a rectangle"""
+        """Return whether a point is in a rectangle"""
+        #|x_point-self.x|<= 0.5*self.side1 --> -0.5*self.side1 <= x_point-self.x <=0.5*self.side1
+        #--> self.x - 0.5*self.side1 <= x_point <= self.x + 0.5*self.side1
+        #Similary, |y_point-self.y|<= 0.5*self.side2 --> self.y - 0.5*self.side1 <= y_point <= self.y + 0.5*self.side1
         return Shape.hori_ver_dis(self.x, x_point) <= 0.5*self.side1 and Shape.hori_ver_dis(self.y, y_point) <= 0.5*self.side2
     
     def __eq__(self, other) -> bool:
         """Return if two rectangles are equal"""
+        """The conditions are: (1) both shapes have the same type"""
+        """(2) both shapes have the same area"""
+        """(3) meanwhile the side1 of the first shape should be the same as either the side1 or side2 of the other shape."""
         return type(self) == type(self) and self.area() == other.area() and (self.side1 == other.side1 or self.side1 == other.side2)
 
     def __repr__(self) -> str:
-        """present the instance"""
+        """Present the instance"""
         return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  

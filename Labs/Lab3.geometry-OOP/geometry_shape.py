@@ -9,34 +9,34 @@ class Shape:
 
     @property
     def x(self)-> float:
-        """ Read-only property, can't set the x-cooridnate"""
+        """Read-only property, can't set the x-cooridnate"""
         return self._x
     
     @property
     def y(self) -> float:
-        """ Read-only property, can't set the y-cooridnate"""
+        """Read-only property, can't set the y-cooridnate"""
         return self._y
 
     @x.setter
     def x(self, value: float) -> None:
-        """ Setter for for x-coordinate with error handling"""
+        """Setter for x-coordinate with error handling"""
         self._x = Shape.validate_number(value)
 
     @y.setter
     def y(self, value: float) -> None:
-        """ Setter for for y-coordinate with error handling"""
+        """Setter for y-coordinate with error handling"""
         self._y = Shape.validate_number(value)
 
     @staticmethod
     def validate_number(value):
-        """ validates if value is a number, in the sense of either integer or float """
+        """Validates if value is a number, in the sense of either integer or float """
         if not isinstance(value, (int,float)):
             raise TypeError (f"integer or float needed here, not {type(value)}.")
         return value
 
     @staticmethod
     def validate_positive_number(value):
-        """ validates if value is a positive number, in the sense of either integer or float """
+        """Validates if value is a positive number, in the sense of either integer or float """
         if not isinstance(value, (int, float)):
             raise TypeError (f"integer or float number needed here, not {type(value)}.")
         if value <= 0:
@@ -70,10 +70,10 @@ class Shape:
     
         
     def translate(self, x_move:float, y_move:float) -> None:
-        """a method to move x by x_move, and move y by y_move"""
+        """A method to move x by x_move, and move y by y_move"""
         self._x =  self.x + Shape.validate_number(x_move)
         self._y =  self.y + Shape.validate_number(y_move)
 
     def __repr__(self) -> str:
-        """present the instance"""
+        """Present the information of instance"""
         return f"Shape with center point: ({self.x}, {self.y})."
