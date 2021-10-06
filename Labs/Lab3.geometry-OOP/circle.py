@@ -1,6 +1,9 @@
 
 from geometry_shape import Shape
 from math import pi
+import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
+
 
 class Circle(Shape):
     def __init__(self, x: float, y: float, radius: float) -> None:
@@ -39,3 +42,24 @@ class Circle(Shape):
     def __repr__(self) -> str:
         """Present the instance"""
         return f"Circle with center point: ({self.x}, {self.y}) with radius: {self.radius}" 
+
+    def plot_circle(self,x_point=None, y_point=None):
+        circle_to_plot = plt.Circle((self.x, self.y), self.radius, color="b", fill=False, clip_on=False)
+        fig, ax = plt.subplots(dpi=150,figsize=(10,4))
+        ax.set_xlim(self.x-self.radius-2, self.x+self.radius+2)
+        ax.set_ylim(self.y-self.radius-2, self.y+self.radius+2)
+        ax.set_aspect('equal')
+        ax.add_patch(circle_to_plot)
+        ax.plot(self.x, self.y,'s', color ="b")
+
+        if x_point !=None and y_point !=None:
+            ax.plot(x_point,y_point, color='red', marker='*')
+
+        #https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
+        midpoint_of_circle= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=10, label=f'Midpoint: ({self.x}, {self.y}); Radius: {self.radius}')
+        pont_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=10, label=f'Point to check:({x_point}, {y_point})')
+        plt.legend(handles=[midpoint_of_circle, pont_to_check])
+
+        ax.set(title="Plot circle and point")
+
+    
