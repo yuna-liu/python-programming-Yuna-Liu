@@ -142,6 +142,50 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rectangle_1==rectangle_2, True)
         self.assertEqual(rectangle_1==rectangle_3, True)
         self.assertEqual(rectangle_1==rectangle_4, False)
-        
+
+class TestSphere(unittest.TestCase):
+    def setUp(self) -> None:
+        self.x, self.y, self.z = 0, 0, 0
+        self.radius = 1
+
+    def create_sphere(self) -> "Sphere":
+        return Sphere(self.x, self.y, self.z, self.radius)
+
+    def test_create_sphere(self):
+        sphere_1 = self.create_sphere()
+        self.assertEqual((sphere_1.x, sphere_1.y, sphere_1.radius),(self.x, self.y, self.radius))
+
+    def test_create_sphere_str(self):
+        with self.assertRaises(TypeError):
+           Sphere(0,0, 0, "1")
+           Sphere(0,0, "0", 1)
+
+    def test_create_sphere_negative_and_zero_sides(self):
+        for one_test in [-1, 0]:
+            with self.assertRaises(ValueError):
+                Sphere(0,0,0, one_test)
+    
+    def test_surface_area(self):
+        sphere_1 = Sphere(0,0,0,1)
+        self.assertEqual(sphere_1.surface_area(), 4*pi*self.radius**2)
+
+    def test_volume(self):
+        sphere_1 = Sphere(0,0,0,1)
+        self.assertEqual(sphere_1.volume(), (4/3)*pi*self.radius**3)
+
+    def test_is_inside(self):
+        sphere_1 = Sphere(0,0,0,1)
+        self.assertEqual(sphere_1.is_inside(0.5,0.5,0.5), True)
+        sphere_2 = Sphere(1,1,1,1)
+        self.assertEqual(sphere_2.is_inside(0.1,0.1,0.1), False)
+
+    def test__eq__(self):
+        sphere_1 = Sphere(0,0,0,1)
+        sphere_2 = Sphere(1,1,1,1)
+        sphere_3 = Sphere(0,0,0,2)
+        self.assertEqual(sphere_1==sphere_2, True)
+        self.assertEqual(sphere_1==sphere_3, False)
+
+
 if __name__ == "__main__":
     unittest.main()
