@@ -53,4 +53,4 @@ class Sphere(Shape):
  
     def __repr__(self) -> str:
         """Present the instance"""
-        return f"Sphere with center point: ({self.x}, {self.y}, {self.z}) with radius: {self.radius}"  
+        return f"Sphere with center point: ({self.x}, {self.y}, {self.z}) with radius: {self.radius}"
