@@ -49,7 +49,7 @@ class TestShape(unittest.TestCase):
     def test_translate(self):
         shape_1 = self.create_shape()
         shape_1.translate(5,5)
-        self.assertEqual((shape_1.x, shape_1.y), (1+5,2+5))
+        self.assertEqual((shape_1.x, shape_1.y), (self.x+5,self.y+5))
         with self.assertRaises(TypeError):
             shape_1.translate("5", 5)
         with self.assertRaises(TypeError):
@@ -178,6 +178,15 @@ class TestSphere(unittest.TestCase):
         self.assertEqual(sphere_1.is_inside(0.5,0.5,0.5), True)
         sphere_2 = Sphere(1,1,1,1)
         self.assertEqual(sphere_2.is_inside(0.1,0.1,0.1), False)
+
+    def test_translate(self):
+        sphere_1 = self.create_sphere()
+        sphere_1.translate(5,5,5)
+        self.assertEqual((sphere_1.x, sphere_1.y, sphere_1.z, sphere_1.radius), (self.x+5,self.y+5,self.z+5,self.radius))
+        with self.assertRaises(TypeError):
+            sphere_1.translate("5", 5, 5)
+            sphere_1.translate(5, "5", 5)
+            sphere_1.translate(5, 5, "5")
 
     def test__eq__(self):
         sphere_1 = Sphere(0,0,0,1)
