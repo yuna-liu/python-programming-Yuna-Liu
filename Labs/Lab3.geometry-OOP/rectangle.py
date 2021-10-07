@@ -59,15 +59,16 @@ class Rectangle(Shape):
         return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
 
     def plot_rectangle(self,x_point=None, y_point=None):
-        data_to_plot = matplotlib.patches.Rectangle((self.x-0.5*self.side1, self.y-0.5*self.side2), self.side1, self.side2, color="b", fill=False, clip_on=False)
+        data_to_plot = matplotlib.patches.Rectangle((self.x-0.5*self.side1, self.y-0.5*self.side2), self.side1, self.side2, color="b", fill=True, clip_on=False)
         #https://www.pythonpool.com/matplotlib-draw-rectangle/
         #matplotlib.patches.Rectangle((x,y), width, height)
         #x,y: This parameter represents the lower left point from which the rectangle plotting will start.
         fig, ax = plt.subplots(dpi=150,figsize=(10,4))
-        ax.set_xlim(self.x-self.side1-2, self.x+self.side1+2)
-        ax.set_ylim(self.y-self.side2-2, self.y+self.side2+2)
+        ax.set_xlim(self.x-0.5*self.side1-1, self.x+0.5*self.side1+1)
+        ax.set_ylim(self.y-0.5*self.side2-1, self.y+0.5*self.side2+1)
         ax.add_patch(data_to_plot)
         ax.plot(self.x, self.y,'s', color ="b")
+        ax.grid()
 
         if x_point !=None and y_point !=None:
             ax.plot(x_point,y_point, color='red', marker='*')
