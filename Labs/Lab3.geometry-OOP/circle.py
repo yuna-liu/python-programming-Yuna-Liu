@@ -57,9 +57,10 @@ class Circle(Shape):
             ax.plot(x_point,y_point, color='red', marker='*')
 
         #https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
+        #https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html
+        shape = mlines.Line2D([], [], color='blue', marker='o', linestyle='None', markerfacecolor="white", markersize=10, label=f'Circle:(({x_point}, {y_point}), Radius: {self.radius})')
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=6, label=f'Midpoint of circle: ({self.x}, {self.y})')
         pont_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=6, label=f'Point to check:({x_point}, {y_point})')
-        shape = mlines.Line2D([], [], color='blue', marker='o', linestyle='None', markerfacecolor="white", markersize=6, label=f'Circle:(({x_point}, {y_point}), Radius: {self.radius})')
         
         plt.legend(handles=[shape, midpoint_of_shape, pont_to_check])
 
