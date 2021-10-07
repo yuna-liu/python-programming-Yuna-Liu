@@ -1,4 +1,16 @@
 from geometry_shape import Shape
+import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
+import matplotlib
+from mpl_toolkits import mplot3d
+import numpy as np
+
+
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+import numpy as np
+from itertools import product, combinations
+
 
 class Cube(Shape):
     def __init__(self, x: float, y: float, z:float, side: float) -> None:
@@ -55,6 +67,26 @@ class Cube(Shape):
         """Return if two spheres are equal. The conditions are they should be the same type, and the sides are equal"""
         return type(self) == type(self) and self.side == other.side
  
+    def plot_cube(self,x_point=None, y_point=None, z_point=None):
+        fig = plt.figure()
+        ax = plt.subplot(projection='3d')
+        ax.set_aspect("auto")
+
+        # draw cube
+        r = [self.x-0.5*self.side, self.x+0.5*self.side]
+        for s, e in combinations(np.array(list(product(r, r, r))), 2):
+            if np.sum(np.abs(s-e)) == r[1]-r[0]:
+                ax.plot3D(*zip(s, e), color="b")
+
+        ax.plot(self.x, self.y, self.y,'s', color ="b")
+        ax.grid()
+
+        if x_point !=None and y_point !=None and z_point !=None:
+            ax.plot(x_point,y_point,z_point, color='red', marker='*')
+
+
+
     def __repr__(self) -> str:
         """Present the instance"""
         return f"Cube with center point: ({self.x}, {self.y}, {self.z}) with side length: {self.side}"   
+
