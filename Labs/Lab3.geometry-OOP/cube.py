@@ -68,6 +68,7 @@ class Cube(Shape):
         return type(self) == type(self) and self.side == other.side
  
     def plot_cube(self,x_point=None, y_point=None, z_point=None):
+        #https://www.geeksforgeeks.org/how-to-draw-3d-cube-using-matplotlib-in-python/
         fig = plt.figure()
         ax = plt.subplot(projection='3d')
         ax.set_aspect("auto")
