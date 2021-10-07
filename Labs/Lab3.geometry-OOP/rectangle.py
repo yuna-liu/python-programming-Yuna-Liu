@@ -59,7 +59,7 @@ class Rectangle(Shape):
         return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
 
     def plot_rectangle(self,x_point=None, y_point=None):
-        data_to_plot = matplotlib.patches.Rectangle((self.x-0.5*self.side1, self.y-0.5*self.side2), self.side1, self.side2, color="b", fill=True, clip_on=False)
+        data_to_plot = matplotlib.patches.Rectangle((self.x-0.5*self.side1, self.y-0.5*self.side2), self.side1, self.side2, color="b", fill=False, linewidth = 2)
         #https://www.pythonpool.com/matplotlib-draw-rectangle/
         #matplotlib.patches.Rectangle((x,y), width, height)
         #x,y: This parameter represents the lower left point from which the rectangle plotting will start.
@@ -74,8 +74,10 @@ class Rectangle(Shape):
             ax.plot(x_point,y_point, color='red', marker='*')
 
         #https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
-        midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=6, label=f'Rectangle: midpoint ({self.x}, {self.y}); width: {self.side1}; height: {self.side2}')
-        point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=6, label=f'Point to check:({x_point}, {y_point})')
-        plt.legend(handles=[midpoint_of_shape, point_to_check])
+        shape = mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markerfacecolor="white", markersize=10, label=f'Rectangle: (width: {self.side1}, height: {self.side2})')
+        midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=6, label=f'Midpoint of rectangle: ({self.x}, {self.y})')
+        point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=6, label=f'Point to check: ({x_point}, {y_point})')
+        
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check])
 
         ax.set(title="Plot rectangle and point")
