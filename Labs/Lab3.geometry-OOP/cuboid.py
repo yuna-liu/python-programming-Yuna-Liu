@@ -1,6 +1,5 @@
 from geometry_shape import Shape
 from rectangle import Rectangle
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
 from itertools import product, combinations
