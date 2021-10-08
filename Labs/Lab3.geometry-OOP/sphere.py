@@ -1,6 +1,9 @@
 from geometry_shape import Shape
 from math import pi
-
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+import numpy as np
+from itertools import product, combinations
 
 class Sphere(Shape):
     def __init__(self, x: float, y: float, z:float, radius: float) -> None:
@@ -50,7 +53,27 @@ class Sphere(Shape):
     def __eq__(self, other) -> bool:
         """Return if two spheres are equal. The conditions are they should be the same type, and the radius are equal"""
         return type(self) == type(other) and self.radius == other.radius
- 
+    
+    def plot_sphere(self, x_point=None, y_point=None, z_point=None):
+        # https://stackoverflow.com/questions/11140163/plotting-a-3d-cube-a-sphere-and-a-vector-in-matplotlib
+        # https://stackoverflow.com/questions/40460960/how-to-plot-a-sphere-when-we-are-given-a-central-point-and-a-radius-size
+        
+        fig = plt.figure()
+        ax = plt.subplot(projection='3d')
+        ax.set_aspect("auto")
+        # draw sphere
+        u, v = np.mgrid[0:2*np.pi:20j, 0:np.pi:10j]
+        x = self.x+self.radius*np.cos(u)*np.sin(v)
+        y = self.y+self.radius*np.sin(u)*np.sin(v)
+        z = self.z+self.radius*np.cos(v)
+        ax.plot_wireframe(x, y, z, color="blue",alpha=0.7)
+        ax.plot(self.x, self.y,'s', color ="b")
+        ax.grid()
+
+        if x_point !=None and y_point !=None:
+            ax.plot(x_point,y_point, color='red', marker='*')
+
+
     def __repr__(self) -> str:
         """Present the instance"""
         return f"Sphere with center point: ({self.x}, {self.y}, {self.z}) with radius: {self.radius}"
