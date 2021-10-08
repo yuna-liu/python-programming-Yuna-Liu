@@ -1,16 +1,16 @@
 from geometry_shape import Shape
+from circle import Circle
 from math import pi
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 import numpy as np
-from itertools import product, combinations
+import matplotlib.lines as mlines
 
-class Sphere(Shape):
+
+class Sphere(Circle):
     def __init__(self, x: float, y: float, z:float, radius: float) -> None:
-        """A subclass to represent sphere with (x, y, z) of the midpoint and radius"""
-        super().__init__(x,y)
+        """A subclass of circle to represent sphere with (x, y, z) of the midpoint and radius"""
+        super().__init__(x,y,radius)
         self.z = z
-        self.radius = radius
 
     @property
     def z(self) -> float:
@@ -22,19 +22,12 @@ class Sphere(Shape):
         """Setter for z with error handling"""
         self._z = Shape.validate_number(value)
     
-    @property
-    def radius(self) -> float:
-        """Read-only property, can't set the radius"""
-        return self._radius
-    
-    @radius.setter
-    def radius(self, value: float) -> None:
-        """Setter for radius with error handling"""
-        self._radius = Shape.validate_positive_number(value)
-    
-    def surface_area(self) -> float:
+    def area(self) -> float:
         """Return the surface area of sphere"""
         return 4*pi*self.radius**2
+
+    def perimeter(self) -> float:
+        return NotImplemented # as we don't want define the perimeter method of sphere.
     
     def volume(self) -> float:
         """Return the volume of sphere"""
@@ -55,24 +48,39 @@ class Sphere(Shape):
         return type(self) == type(other) and self.radius == other.radius
     
     def plot_sphere(self, x_point=None, y_point=None, z_point=None):
-        # https://stackoverflow.com/questions/11140163/plotting-a-3d-cube-a-sphere-and-a-vector-in-matplotlib
-        # https://stackoverflow.com/questions/40460960/how-to-plot-a-sphere-when-we-are-given-a-central-point-and-a-radius-size
+        """Draw sphere and a point"""
+        # Reference: https://stackoverflow.com/questions/11140163/plotting-a-3d-cube-a-sphere-and-a-vector-in-matplotlib
+        # Reference: https://stackoverflow.com/questions/40460960/how-to-plot-a-sphere-when-we-are-given-a-central-point-and-a-radius-size
         
-        fig = plt.figure()
+        fig = plt.figure(dpi=100, figsize=(10,4))
         ax = plt.subplot(projection='3d')
         ax.set_aspect("auto")
+
         # draw sphere
-        u, v = np.mgrid[0:2*np.pi:20j, 0:np.pi:10j]
+        u, v = np.mgrid[0:2*np.pi:30j, 0:np.pi:20j]
         x = self.x+self.radius*np.cos(u)*np.sin(v)
         y = self.y+self.radius*np.sin(u)*np.sin(v)
         z = self.z+self.radius*np.cos(v)
-        ax.plot_wireframe(x, y, z, color="blue",alpha=0.7)
-        ax.plot(self.x, self.y,'s', color ="b")
+        ax.plot_wireframe(x, y, z, color="blue",alpha=0.5)
+        
+        # draw midpoint and grid
+        ax.plot(self.x, self.y, self.z, 's', color ="b")
         ax.grid()
 
+        # draw any point to check
         if x_point !=None and y_point !=None:
-            ax.plot(x_point,y_point, color='red', marker='*')
+           ax.plot(x_point,y_point, z_point, color='red', marker='*')
+        
+        # create legend
+        shape = mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markerfacecolor="white", markersize=6, label=f'Sphere: Radius: {self.radius}')
+        midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=4, label=f'Midpoint of sphere: ({self.x}, {self.y}, {self.z})')
+        point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=4, label=f'Point to check: ({x_point}, {y_point}, {z_point})')
+        
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='x-small')
 
+        # create title and plot show
+        ax.set(title="Plot sphere and point")
+        plt.show()
 
     def __repr__(self) -> str:
         """Present the instance"""

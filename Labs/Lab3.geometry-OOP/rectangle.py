@@ -59,11 +59,16 @@ class Rectangle(Shape):
         return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
 
     def plot_rectangle(self,x_point=None, y_point=None):
+        """Draw rectangle and a point"""
+        # Reference: https://www.pythonpool.com/matplotlib-draw-rectangle/
         data_to_plot = matplotlib.patches.Rectangle((self.x-0.5*self.side1, self.y-0.5*self.side2), self.side1, self.side2, color="b", fill=False, linewidth = 2)
-        #https://www.pythonpool.com/matplotlib-draw-rectangle/
+       
         #matplotlib.patches.Rectangle((x,y), width, height)
         #x,y: This parameter represents the lower left point from which the rectangle plotting will start.
-        fig, ax = plt.subplots(dpi=150,figsize=(10,4))
+        
+        fig, ax = plt.subplots(dpi=100,figsize=(10,4))
+
+        # draw any point to check and set xlim and ylim
         if x_point !=None and y_point !=None:
             ax.plot(x_point,y_point, color='red', marker='*')
             if self.is_inside(x_point, y_point):
@@ -73,18 +78,22 @@ class Rectangle(Shape):
                 ax.set_xlim(-x_point-1, x_point+1)
                 ax.set_ylim(-y_point-1, y_point+1)
                 # The "-1" in each of ax.set_xlim and ax.set_ylim is motivated to evoid drawing on the figure boundary.
+        
+        # draw rectangle
         ax.add_patch(data_to_plot)
+
+        # draw midpoint and grid
         ax.plot(self.x, self.y,'s', color ="b")
         ax.grid()
 
-
-
-        #https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
+        # create legend
+        # Reference: https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
         shape = mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markerfacecolor="white", markersize=10, label=f'Rectangle: (width: {self.side1}, height: {self.side2})')
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=6, label=f'Midpoint of rectangle: ({self.x}, {self.y})')
         point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=6, label=f'Point to check: ({x_point}, {y_point})')
         
         plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='medium')
 
-
+        # create title and plot show
         ax.set(title="Plot rectangle and point")
+        plt.show()

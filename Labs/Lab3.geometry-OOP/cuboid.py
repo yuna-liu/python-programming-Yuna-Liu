@@ -64,9 +64,10 @@ class Cuboid(Rectangle):
         return type(self) == type(self) and self.volume()==other.volume() and self.area()==other.area() and self.perimeter()==other.perimeter()
  
     def plot_cuboid(self,x_point=None, y_point=None, z_point=None):
+        """Draw cuboid and a point"""
         # Reference: https://stackoverflow.com/questions/30715083/python-plotting-a-wireframe-3d-cuboid
 
-        fig = plt.figure(dpi=150,figsize=(10,4))
+        fig = plt.figure(dpi=100,figsize=(10,4))
         ax = plt.subplot(projection='3d')
         #ax.set_aspect("equal")
         # NotImplementedError: Axes3D currently only supports the aspect argument 'auto'. You passed in 'equal'
@@ -85,21 +86,22 @@ class Cuboid(Rectangle):
                 zip(s,e)
                 ax.plot3D(*zip(s,e), color="b")  
         
-        # draw midpoint
+        # draw midpoint and grid
         ax.plot(self.x, self.y, self.y,'s', color ="b")
         ax.grid()
 
-        # draw any point to check is_inside()
+        # draw any point to check
         if x_point !=None and y_point !=None and z_point !=None:
             ax.plot(x_point,y_point,z_point, color='red', marker='*')
 
-        
+        # create legend
         shape = mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markerfacecolor="white", markersize=6, label=f'Cuboid: (width: {self.side1}, length: {self.side2}, height: {self.side3})')
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=4, label=f'Midpoint of cuboid: ({self.x}, {self.y}, {self.z})')
         point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=4, label=f'Point to check: ({x_point}, {y_point}, {z_point})')
         
-        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='xx-small')
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='x-small')
 
+        # create title and plot show
         ax.set(title="Plot cuboid and point")
         plt.show()
 
