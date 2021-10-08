@@ -1,7 +1,7 @@
 from geometry_shape import Shape
 from circle import Circle
 from rectangle import Rectangle
-from cube import Cube
+from cuboid import Cuboid
 from sphere import Sphere
 from math import sqrt
 from math import pi
@@ -18,38 +18,49 @@ class TestShape(unittest.TestCase):
         shape_1 = self.create_shape()
         self.assertEqual((shape_1.x, shape_1.y),(self.x, self.y))
 
-    def test_create_str_shape(self) -> None:
+    def test_create_shape_with_str(self) -> None:
         with self.assertRaises(TypeError):
             Shape("1",1)
         with self.assertRaises(TypeError):
             Shape(1, "1")
 
-    def test_validate_str_number(self):
+    def test_validate_number_with_str(self):
         with self.assertRaises(TypeError):
             Shape.validate_number("two")
 
-    def test_validate_positive_number(self):
+    def test_validate_positive_number_with_zero_neg(self):
         list_of_test = [0, -1]
         for test_one in list_of_test:
             with self.assertRaises(ValueError):
                 Shape.validate_positive_number(test_one)
 
-    def test_validate_positive_number_str(self):       
+    def test_validate_positive_number_with_str(self):       
         with self.assertRaises(TypeError):
             Shape.validate_positive_number ("one")
 
     def test_hori_ver_dis(self) -> float:
         dis = Shape.hori_ver_dis(self.x, self.y)
         self.assertEqual(dis, abs(2-1))
+    
+    def test_hori_ver_dis_with_str(self) -> float:
+        with self.assertRaises(TypeError):
+            Shape.hori_ver_dis("two", 1)
 
     def test_eu_dis(self) -> float:
         dis = Shape.eu_dis(0,1,0,2)
         self.assertEqual(dis, sqrt(1**2+2**2))
 
+    def test_eu_dis_with_str(self) -> float:
+        with self.assertRaises(TypeError):
+            Shape.eu_dis("0",1,0,2)
+
     def test_translate(self):
         shape_1 = self.create_shape()
         shape_1.translate(5,5)
         self.assertEqual((shape_1.x, shape_1.y), (self.x+5,self.y+5))
+
+    def test_translate_with_str(self):
+        shape_1 = self.create_shape()
         with self.assertRaises(TypeError):
             shape_1.translate("5", 5)
         with self.assertRaises(TypeError):
@@ -67,11 +78,11 @@ class TestCircle(unittest.TestCase):
         circle_1 = self.create_circle()
         self.assertEqual((circle_1.x, circle_1.y, circle_1.radius),(self.x, self.y, self.radius))
 
-    def test_create_circle_str_radius(self):
+    def test_create_circle_with_str_radius(self):
         with self.assertRaises(TypeError):
            Circle(0,0, "1")
 
-    def test_create_circle_negative_and_zero_radius(self):
+    def test_create_circle_with_negative_and_zero_radius(self):
         for one_test in [-1, 0]:
             with self.assertRaises(ValueError):
                 Circle(0,0, one_test)
@@ -79,16 +90,37 @@ class TestCircle(unittest.TestCase):
     def test_area(self):
         circle_1 = Circle(0,0,1)
         self.assertEqual(circle_1.area(), pi*(self.radius)**2)
-
+    
+    def test_area_with_str(self):
+        with self.assertRaises(TypeError):
+           Circle.area("0",0, 1)
+    
+    def test_area_with_zero_and_neg_radius(self):
+        with self.assertRaises(TypeError):
+           Circle.area(0, 0, -1)
+        with self.assertRaises(TypeError):
+           Circle.area(0, 0, 0)
+        
     def test_perimeter(self):
         circle_1 = Circle(0,0,1)
         self.assertEqual(circle_1.perimeter(), 2*pi*self.radius)
+
+    def test_perimeter_with_str(self):
+        with self.assertRaises(TypeError):
+           Circle.perimeter("0",0, 1)
+    
+    def test_perimeter_with_neg_radius(self):
+        with self.assertRaises(TypeError):
+           Circle.perimeter(0, 0, -1)
 
     def test_is_inside(self):
         circle_1 = Circle(0,0,1)
         self.assertEqual(circle_1.is_inside(0.5,0.5), True)
         circle_2 = Circle(1,1,1)
         self.assertEqual(circle_2.is_inside(0.1,0.1), False)
+
+    def test_is_inside_with_str(self):
+        circle_1 = Circle(0,0,1)
         with self.assertRaises(TypeError):
             circle_1.is_inside("0.5",0.5)
             circle_1.is_inside(0.5,"0.5")
@@ -112,12 +144,12 @@ class TestRectangle(unittest.TestCase):
         rectangle_1 = self.create_rectangle()
         self.assertEqual((rectangle_1.x, rectangle_1.y, rectangle_1.side1, rectangle_1.side2),(self.x, self.y, self.side1, self.side2))
 
-    def test_create_rectangle_str_sides(self):
+    def test_create_rectangle_with_str_sides(self):
         with self.assertRaises(TypeError):
             Rectangle(0,0, "1", 2)
             Rectangle(0,0, 1, "2")
 
-    def test_create_rectangle_negative_and_zero_sides(self):
+    def test_create_rectangle_with_negative_and_zero_sides(self):
         for one_test in [-1, 0]:
             with self.assertRaises(ValueError):
                 Rectangle(0,0, one_test, 2)
@@ -127,15 +159,42 @@ class TestRectangle(unittest.TestCase):
         rectangle_1 = self.create_rectangle()
         self.assertEqual(rectangle_1.area(), self.side1*self.side2)
 
+    def test_area_with_str_sides(self):
+        with self.assertRaises(TypeError):
+           Rectangle.area(0, 0, "1", 1)
+        with self.assertRaises(TypeError):
+           Rectangle.area(0, 0, 1, "1")
+    
+    def test_area_with_zero_neg_sides(self):
+        with self.assertRaises(TypeError):
+           Rectangle.area(0, 0, 0, 1)
+        with self.assertRaises(TypeError):
+           Rectangle.area(0, 0, -1, -1)
+
     def test_perimeter(self):
         rectangle_1 = self.create_rectangle()
         self.assertEqual(rectangle_1.perimeter(), 2*(self.side1+self.side2))
+   
+    def test_perimeter_with_str_sides(self):
+        with self.assertRaises(TypeError):
+           Rectangle.perimeter(0, 0, "1", 1)
+        with self.assertRaises(TypeError):
+           Rectangle.perimeter(0, 0, 1, "1")
+
+    def test_perimeter_with_zero_and_neg_sides(self):
+        with self.assertRaises(TypeError):
+           Rectangle.perimeter(0, 0, 0, 1)
+        with self.assertRaises(TypeError):
+           Rectangle.perimeter(0, 0, 1, -1)
 
     def test_is_inside(self):
         rectangle_1 = Rectangle(0,0,1,2)
         self.assertEqual(rectangle_1.is_inside(0.5,0.5), True)
         rectangle_2 = Rectangle(1,1,1,2)
         self.assertEqual(rectangle_2.is_inside(0.1,0.1), False)
+        
+    def test_is_inside_with_str_sides(self):
+        rectangle_1 = Rectangle(0,0,1,2)
         with self.assertRaises(TypeError):
             rectangle_1.is_inside("0.5",0.5)
             rectangle_1.is_inside(0.5,"0.5")
@@ -159,25 +218,50 @@ class TestSphere(unittest.TestCase):
 
     def test_create_sphere(self):
         sphere_1 = self.create_sphere()
-        self.assertEqual((sphere_1.x, sphere_1.y, sphere_1.radius),(self.x, self.y, self.radius))
+        self.assertEqual((sphere_1.x, sphere_1.y, sphere_1.z, sphere_1.radius),(self.x, self.y, self.z, self.radius))
 
-    def test_create_sphere_str(self):
+    def test_create_sphere_with_str(self):
         with self.assertRaises(TypeError):
            Sphere(0,0, 0, "1")
+        with self.assertRaises(TypeError):
            Sphere(0,0, "0", 1)
 
-    def test_create_sphere_negative_and_zero_radius(self):
+    def test_create_sphere_with_negative_and_zero_radius(self):
         for one_test in [-1, 0]:
             with self.assertRaises(ValueError):
                 Sphere(0,0,0, one_test)
     
-    def test_surface_area(self):
+    def test_area(self):
         sphere_1 = Sphere(0,0,0,1)
         self.assertEqual(sphere_1.surface_area(), 4*pi*self.radius**2)
+
+    def test_area_with_str(self):
+        with self.assertRaises(TypeError):
+           Sphere.area(0,0, 0, "1")
+
+    def test_area_with_zero_and_neg_radius(self):
+        with self.assertRaises(TypeError):
+           Sphere.area(0,0, 0, 0)
+        with self.assertRaises(TypeError):
+           Sphere.area(0,0, 0, -1)
+
+    def test_perimeter(self):
+        sphere_1 = Sphere(0,0,0,1)
+        self.assertEqual(sphere_1.perimeter(), "NotImplemented")
 
     def test_volume(self):
         sphere_1 = Sphere(0,0,0,1)
         self.assertEqual(sphere_1.volume(), (4/3)*pi*self.radius**3)
+
+    def test_volume_with_str_radius(self):
+        with self.assertRaises(TypeError):
+           Sphere.volume(0,0, 0, "1")
+
+    def test_volume_with_zero_and_neg_radius(self):
+        with self.assertRaises(TypeError):
+           Sphere.volume(0,0, 0, 0)
+        with self.assertRaises(TypeError):
+           Sphere.volume(0,0, 0, -1)
 
     def test_is_inside(self):
         sphere_1 = Sphere(0,0,0,1)
@@ -193,6 +277,9 @@ class TestSphere(unittest.TestCase):
         sphere_1 = self.create_sphere()
         sphere_1.translate(5,5,5)
         self.assertEqual((sphere_1.x, sphere_1.y, sphere_1.z, sphere_1.radius), (self.x+5,self.y+5,self.z+5,self.radius))
+ 
+    def test_translate_with_str(self):
+        sphere_1 = self.create_sphere()
         with self.assertRaises(TypeError):
             sphere_1.translate("5", 5, 5)
             sphere_1.translate(5, "5", 5)
@@ -205,65 +292,110 @@ class TestSphere(unittest.TestCase):
         self.assertEqual(sphere_1==sphere_2, True)
         self.assertEqual(sphere_1==sphere_3, False)
 
-class TestCube(unittest.TestCase):
+class TestCuboid(unittest.TestCase):
     def setUp(self) -> None:
         self.x, self.y, self.z = 0, 0, 0
-        self.side = 1
+        self.side1, self.side2, self.side3 = 1,2,3
 
-    def create_cube(self) -> "Cube":
-        return Cube(self.x, self.y, self.z, self.side)
+    def create_cuboid(self) -> "Cuboid":
+        return Cuboid(self.x, self.y, self.z, self.side1, self.side2, self.side3)
 
-    def test_create_cube(self):
-        cube_1 = self.create_cube()
-        self.assertEqual((cube_1.x, cube_1.y, cube_1.side),(self.x, self.y, self.side))
+    def test_create_cuboid(self):
+        cuboid_1 = self.create_cuboid()
+        self.assertEqual((cuboid_1.x, cuboid_1.y, cuboid_1.z, cuboid_1.side1, cuboid_1.side2, cuboid_1.side3),(self.x, self.y, self.z, self.side1, self.side2, self.side3))
 
-    def test_create_cube_str(self):
+    def test_create_cuboid_str_sides(self):
         with self.assertRaises(TypeError):
-           Cube(0,0, 0, "1")
-           Cube(0,0, "0", 1)
+            Cuboid(0,0, 0, "1", 2, 3)
+        with self.assertRaises(TypeError):
+            Cuboid(0,0, 0, 1, "2", 3)
+        with self.assertRaises(TypeError):
+            Cuboid(0,0, 0, 1, 2, "3")
 
-    def test_create_cube_negative_and_zero_side(self):
+    def test_create_cuboid_with_neg_and_zero_sides(self):
         for one_test in [-1, 0]:
             with self.assertRaises(ValueError):
-                Cube(0,0,0, one_test)
+                Cuboid(0,0,0, one_test, 2, 3)
     
     def test_area(self):
-        cube_1 = self.create_cube()
-        self.assertEqual(cube_1.area(), 6*self.side**2)
+        cuboid_1 = self.create_cuboid()
+        self.assertEqual(cuboid_1.area(), 2*(self.side1*self.side2+self.side1*self.side3+self.side2*self.side3))
+    
+    def test_area_with_str_sides(self):
+        with self.assertRaises(TypeError):
+            Cuboid.area(0,0, 0, 1, "2", 3)
+        with self.assertRaises(TypeError):
+            Cuboid.area(0,0, 0, 1, 2, "3")
+
+    def test_area_with_zero_and_neg_sides(self):
+        with self.assertRaises(TypeError):
+            Cuboid.area(0,0, 0, 1, 0, 3)
+        with self.assertRaises(TypeError):
+            Cuboid.area(0,0, 0, 1, 2, -3)
 
     def test_perimeter(self):
-        cube_1 = self.create_cube()
-        self.assertEqual(cube_1.perimeter(), 12*self.side)
+        cuboid_1 = self.create_cuboid()
+        self.assertEqual(cuboid_1.perimeter(), 4*(self.side1+self.side2+self.side3))
+    
+    def test_perimeter_with_str_sides(self):
+        with self.assertRaises(TypeError):
+            Cuboid.perimeter(0,0, 0, 1, "2", 3)
+        with self.assertRaises(TypeError):
+            Cuboid.perimeter(0,0, 0, 1, 2, "3")
+
+    def test_perimeter_with_zero_and_neg_sides(self):
+        with self.assertRaises(TypeError):
+            Cuboid.perimeter(0,0, 0, 1, 0, 3)
+        with self.assertRaises(TypeError):
+            Cuboid.perimeter(0,0, 0, 1, 2, -3)
 
     def test_volume(self):
-        cube_1 = self.create_cube()
-        self.assertEqual(cube_1.volume(), self.side**3)
+        cuboid_1 = self.create_cuboid()
+        self.assertEqual(cuboid_1.volume(), self.side1*self.side2*self.side3)
+
+    def test_volume_with_str_sides(self):
+        with self.assertRaises(TypeError):
+            Cuboid.volume(0,0, 0, 1, "2", 3)
+        with self.assertRaises(TypeError):
+            Cuboid.volume(0,0, 0, 1, 2, "3")
+
+    def test_volume_with_zero_and_neg_sides(self):
+        with self.assertRaises(TypeError):
+            Cuboid.volume(0,0, 0, 1, 0, 3)
+        with self.assertRaises(TypeError):
+            Cuboid.volume(0,0, 0, 1, 2, -3)
 
     def test_is_inside(self):
-        cube_1 = self.create_cube()
-        self.assertEqual(cube_1.is_inside(0.5,0.5,0.5), True)
-        cube_2 = Cube(1,1,1,1)
-        self.assertEqual(cube_2.is_inside(0.1,0.1,0.1), False)
+        cuboid_1 = self.create_cuboid()
+        self.assertEqual(cuboid_1.is_inside(0.5,0.5,0.5), True)
+        cuboid_2 = Cuboid(1,1,1,1)
+        self.assertEqual(cuboid_2.is_inside(0.1,0.1,0.1), False)
+        
+    def test_is_inside_with_str(self):
         with self.assertRaises(TypeError):
-           cube_1.is_inside("0.5",0.5,0.5)
-           cube_1.is_inside(0.5,"0.5",0.5)
-           cube_1.is_inside(0.5,0.5,"0.5")
+            cuboid_1 = self.create_cuboid()
+            cuboid_1.is_inside("0.5",0.5,0.5)
+            cuboid_1.is_inside(0.5,"0.5",0.5)
+            cuboid_1.is_inside(0.5,0.5,"0.5")
 
     def test_translate(self):
-        cube_1 = self.create_cube()
-        cube_1.translate(5,5,5)
-        self.assertEqual((cube_1.x, cube_1.y, cube_1.z, cube_1.side), (self.x+5,self.y+5,self.z+5,self.side))
+        cuboid_1 = self.create_cube()
+        cuboid_1.translate(5,5,5)
+        self.assertEqual((cuboid_1.x, cuboid_1.y, cuboid_1.z, cuboid_1.side1, cuboid_1.side2, cuboid_1.side3), (self.x+5,self.y+5,self.z+5,self.side1, self.side2, self.side3))
+        
+    def test_translate_with_str(self):  
+        cuboid_1 = self.create_cube()
         with self.assertRaises(TypeError):
-            cube_1.translate("5", 5, 5)
-            cube_1.translate(5, "5", 5)
-            cube_1.translate(5, 5, "5")
+            cuboid_1.translate("5", 5, 5)
+            cuboid_1.translate(5, "5", 5)
+            cuboid_1.translate(5, 5, "5")
 
     def test__eq__(self):
-        cube_1 = Cube(0,0,0,1)
-        cube_2 = Cube(1,1,1,1)
-        cube_3 = Cube(0,0,0,2)
-        self.assertEqual(cube_1==cube_2, True)
-        self.assertEqual(cube_1==cube_3, False)
+        cuboid_1 = Cuboid(0,0,0,1,2,3)
+        cuboid_2 = Cuboid(1,1,1,1,3,3)
+        cuboid_3 = Cuboid(0,0,0,2,1,3)
+        self.assertEqual(cuboid_1==cuboid_2, True)
+        self.assertEqual(cuboid_1==cuboid_3, False)
 
 if __name__ == "__main__":
     unittest.main()
