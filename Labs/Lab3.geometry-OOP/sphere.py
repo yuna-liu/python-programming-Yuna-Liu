@@ -26,7 +26,7 @@ class Sphere(Circle):
         """Return the surface area of sphere"""
         return 4*pi*self.radius**2
 
-    def perimeter(self) -> str:
+    def perimeter(self) -> None:
         return NotImplemented # as we don't want define the perimeter method of sphere.
     
     def volume(self) -> float:
