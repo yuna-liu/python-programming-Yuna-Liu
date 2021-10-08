@@ -26,7 +26,7 @@ class Sphere(Circle):
         """Return the surface area of sphere"""
         return 4*pi*self.radius**2
 
-    def perimeter(self) -> float:
+    def perimeter(self) -> None:
         return NotImplemented # as we don't want define the perimeter method of sphere.
     
     def volume(self) -> float:
@@ -47,7 +47,7 @@ class Sphere(Circle):
         """Return if two spheres are equal. The conditions are they should be the same type, and the radius are equal"""
         return type(self) == type(other) and self.radius == other.radius
     
-    def plot_sphere(self, x_point=None, y_point=None, z_point=None):
+    def plot_sphere(self, x_point=None, y_point=None, z_point=None) -> None:
         """Draw sphere and a point"""
         # Reference: https://stackoverflow.com/questions/11140163/plotting-a-3d-cube-a-sphere-and-a-vector-in-matplotlib
         # Reference: https://stackoverflow.com/questions/40460960/how-to-plot-a-sphere-when-we-are-given-a-central-point-and-a-radius-size

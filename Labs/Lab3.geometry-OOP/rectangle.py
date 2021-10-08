@@ -58,7 +58,7 @@ class Rectangle(Shape):
         """Present the instance"""
         return f"Rectangle with center point: ({self.x}, {self.y}) with (horizontal side, vertical side): ({self.side1}, {self.side2})."  
 
-    def plot_rectangle(self,x_point=None, y_point=None):
+    def plot_rectangle(self,x_point=None, y_point=None) -> None:
         """Draw rectangle and a point"""
         # Reference: https://www.pythonpool.com/matplotlib-draw-rectangle/
         data_to_plot = matplotlib.patches.Rectangle((self.x-0.5*self.side1, self.y-0.5*self.side2), self.side1, self.side2, color="b", fill=False, linewidth = 2)

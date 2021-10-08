@@ -42,7 +42,7 @@ class Circle(Shape):
         """Present the instance"""
         return f"Circle with center point: ({self.x}, {self.y}) with radius: {self.radius}" 
 
-    def plot_circle(self,x_point=None, y_point=None):
+    def plot_circle(self,x_point=None, y_point=None) -> None:
         """Draw circle and a point"""
         # draw cirlce
         data_to_plot = plt.Circle((self.x, self.y), self.radius, color="b", fill=False, clip_on=False)

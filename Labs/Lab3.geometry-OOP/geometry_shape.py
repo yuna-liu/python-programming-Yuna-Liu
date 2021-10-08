@@ -28,14 +28,14 @@ class Shape:
         self._y = Shape.validate_number(value)
 
     @staticmethod
-    def validate_number(value):
+    def validate_number(value: float) -> float:
         """Validates if value is a number, in the sense of either integer or float """
         if not isinstance(value, (int,float)):
             raise TypeError (f"integer or float needed here, not {type(value)}.")
         return value
 
     @staticmethod
-    def validate_positive_number(value):
+    def validate_positive_number(value: float) -> float:
         """Validates if value is a positive number, in the sense of either integer or float """
         if not isinstance(value, (int, float)):
             raise TypeError (f"integer or float number needed here, not {type(value)}.")

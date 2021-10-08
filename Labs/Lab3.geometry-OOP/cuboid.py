@@ -63,7 +63,7 @@ class Cuboid(Rectangle):
         """Return if two cuboid are equal. The conditions are they should be the same type, volume, area and perimeter"""
         return type(self) == type(self) and self.volume()==other.volume() and self.area()==other.area() and self.perimeter()==other.perimeter()
  
-    def plot_cuboid(self,x_point=None, y_point=None, z_point=None):
+    def plot_cuboid(self,x_point=None, y_point=None, z_point=None) -> None:
         """Draw cuboid and a point"""
         # Reference: https://stackoverflow.com/questions/30715083/python-plotting-a-wireframe-3d-cuboid
 
