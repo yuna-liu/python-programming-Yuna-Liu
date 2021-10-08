@@ -233,7 +233,7 @@ class TestSphere(unittest.TestCase):
     
     def test_area(self):
         sphere_1 = Sphere(0,0,0,1)
-        self.assertEqual(sphere_1.surface_area(), 4*pi*self.radius**2)
+        self.assertEqual(sphere_1.area(), 4*pi*self.radius**2)
 
     def test_area_with_str(self):
         with self.assertRaises(TypeError):
@@ -247,7 +247,7 @@ class TestSphere(unittest.TestCase):
 
     def test_perimeter(self):
         sphere_1 = Sphere(0,0,0,1)
-        self.assertEqual(sphere_1.perimeter(), "NotImplemented")
+        self.assertEqual(sphere_1.perimeter(), NotImplemented)
 
     def test_volume(self):
         sphere_1 = Sphere(0,0,0,1)
@@ -368,7 +368,7 @@ class TestCuboid(unittest.TestCase):
     def test_is_inside(self):
         cuboid_1 = self.create_cuboid()
         self.assertEqual(cuboid_1.is_inside(0.5,0.5,0.5), True)
-        cuboid_2 = Cuboid(1,1,1,1)
+        cuboid_2 = Cuboid(1,1,1,1,2,4)
         self.assertEqual(cuboid_2.is_inside(0.1,0.1,0.1), False)
         
     def test_is_inside_with_str(self):
@@ -379,12 +379,12 @@ class TestCuboid(unittest.TestCase):
             cuboid_1.is_inside(0.5,0.5,"0.5")
 
     def test_translate(self):
-        cuboid_1 = self.create_cube()
+        cuboid_1 = self.create_cuboid()
         cuboid_1.translate(5,5,5)
         self.assertEqual((cuboid_1.x, cuboid_1.y, cuboid_1.z, cuboid_1.side1, cuboid_1.side2, cuboid_1.side3), (self.x+5,self.y+5,self.z+5,self.side1, self.side2, self.side3))
         
     def test_translate_with_str(self):  
-        cuboid_1 = self.create_cube()
+        cuboid_1 = self.create_cuboid()
         with self.assertRaises(TypeError):
             cuboid_1.translate("5", 5, 5)
             cuboid_1.translate(5, "5", 5)
@@ -394,8 +394,8 @@ class TestCuboid(unittest.TestCase):
         cuboid_1 = Cuboid(0,0,0,1,2,3)
         cuboid_2 = Cuboid(1,1,1,1,3,3)
         cuboid_3 = Cuboid(0,0,0,2,1,3)
-        self.assertEqual(cuboid_1==cuboid_2, True)
-        self.assertEqual(cuboid_1==cuboid_3, False)
+        self.assertEqual(cuboid_1==cuboid_2, False)
+        self.assertEqual(cuboid_1==cuboid_3, True)
 
 if __name__ == "__main__":
     unittest.main()
