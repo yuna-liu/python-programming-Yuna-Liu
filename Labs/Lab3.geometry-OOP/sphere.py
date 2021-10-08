@@ -76,7 +76,7 @@ class Sphere(Circle):
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=4, label=f'Midpoint of sphere: ({self.x}, {self.y}, {self.z})')
         point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=4, label=f'Point to check: ({x_point}, {y_point}, {z_point})')
         
-        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='x-small')
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", framealpha= 0.2, fontsize='x-small')
 
         # create title and plot show
         ax.set(title="Plot sphere and point")

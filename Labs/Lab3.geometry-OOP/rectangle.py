@@ -92,7 +92,7 @@ class Rectangle(Shape):
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=6, label=f'Midpoint of rectangle: ({self.x}, {self.y})')
         point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=6, label=f'Point to check: ({x_point}, {y_point})')
         
-        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='medium')
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", framealpha= 0.2, fontsize='medium')
 
         # create title and plot show
         ax.set(title="Plot rectangle and point")

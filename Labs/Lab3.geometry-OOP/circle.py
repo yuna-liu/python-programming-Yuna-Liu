@@ -47,18 +47,25 @@ class Circle(Shape):
         # draw cirlce
         data_to_plot = plt.Circle((self.x, self.y), self.radius, color="b", fill=False, clip_on=False)
         fig, ax = plt.subplots(dpi=100,figsize=(10,4))
-        ax.set_xlim(self.x-self.radius-1, self.x+self.radius+1)
-        ax.set_ylim(self.y-self.radius-1, self.y+self.radius+1)
+
+        # draw any point to check and set xlim and ylim
+        if x_point !=None and y_point !=None:
+            ax.plot(x_point,y_point, color='red', marker='*')
+            if self.is_inside(x_point, y_point):
+                ax.set_xlim(self.x-self.radius-1, self.x+self.radius+1)
+                ax.set_ylim(self.y-self.radius-1, self.y+self.radius+1)
+            else:
+                ax.set_xlim(-x_point-1, x_point+1)
+                ax.set_ylim(-y_point-1, y_point+1)
+                # The "-1" in each of ax.set_xlim and ax.set_ylim is motivated to evoid drawing on the figure boundary.
+        
+
         ax.set_aspect('equal')
         ax.add_patch(data_to_plot)
 
         # draw midpoint and grid
         ax.plot(self.x, self.y,'s', color ="b")
         ax.grid()
-
-        # draw any point to check
-        if x_point !=None and y_point !=None:
-            ax.plot(x_point,y_point, color='red', marker='*')
 
         # create legend
         # Reference: https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
@@ -67,7 +74,7 @@ class Circle(Shape):
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=4, label=f'Midpoint of circle: ({self.x}, {self.y})')
         point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=4, label=f'Point to check:({x_point}, {y_point})')
         
-        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='small')
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", framealpha= 0.2, fontsize='small')
 
         # create title and plot show
         ax.set(title="Plot circle and point")
