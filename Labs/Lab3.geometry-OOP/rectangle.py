@@ -45,14 +45,14 @@ class Rectangle(Shape):
         #|x_point-self.x|<= 0.5*self.side1 --> -0.5*self.side1 <= x_point-self.x <=0.5*self.side1
         #--> self.x - 0.5*self.side1 <= x_point <= self.x + 0.5*self.side1
         #Similary, |y_point-self.y|<= 0.5*self.side2 --> self.y - 0.5*self.side1 <= y_point <= self.y + 0.5*self.side1
-        return (Shape.hori_ver_dis(self.x, x_point) <= 0.5*self.side1) and (Shape.hori_ver_dis(self.y, y_point) <= 0.5*self.side2)
+        return Shape.hori_ver_dis(self.x, x_point) <= 0.5*self.side1 and Shape.hori_ver_dis(self.y, y_point) <= 0.5*self.side2
     
     def __eq__(self, other) -> bool:
         """Return if two rectangles are equal"""
         """The conditions are: (1) both shapes have the same type"""
-        """(2) both shapes have the same area"""
+        """(2) both shapes have the same area and perimeter"""
         """(3) meanwhile the side1 of the first shape should be the same as either the side1 or side2 of the other shape."""
-        return type(self) == type(self) and self.area() == other.area() and (self.side1 == other.side1 or self.side1 == other.side2)
+        return type(self) == type(self) and self.area() == other.area() and self.perimeter()==other.perimeter()  and (self.side1 == other.side1 or self.side1 == other.side2)
 
     def __repr__(self) -> str:
         """Present the instance"""
@@ -64,20 +64,27 @@ class Rectangle(Shape):
         #matplotlib.patches.Rectangle((x,y), width, height)
         #x,y: This parameter represents the lower left point from which the rectangle plotting will start.
         fig, ax = plt.subplots(dpi=150,figsize=(10,4))
-        ax.set_xlim(self.x-0.5*self.side1-1, self.x+0.5*self.side1+1)
-        ax.set_ylim(self.y-0.5*self.side2-1, self.y+0.5*self.side2+1)
+        if x_point !=None and y_point !=None:
+            ax.plot(x_point,y_point, color='red', marker='*')
+            if self.is_inside(x_point, y_point):
+                ax.set_xlim(self.x-0.5*self.side1-1, self.x+0.5*self.side1+1)
+                ax.set_ylim(self.y-0.5*self.side2-1, self.y+0.5*self.side2+1)
+            else:
+                ax.set_xlim(-x_point-1, x_point+1)
+                ax.set_ylim(-y_point-1, y_point+1)
+                # The "-1" in each of ax.set_xlim and ax.set_ylim is motivated to evoid drawing on the figure boundary.
         ax.add_patch(data_to_plot)
         ax.plot(self.x, self.y,'s', color ="b")
         ax.grid()
 
-        if x_point !=None and y_point !=None:
-            ax.plot(x_point,y_point, color='red', marker='*')
+
 
         #https://stackoverflow.com/questions/47391702/matplotlib-making-a-colored-markers-legend-from-scratch
         shape = mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markerfacecolor="white", markersize=10, label=f'Rectangle: (width: {self.side1}, height: {self.side2})')
         midpoint_of_shape= mlines.Line2D([], [], color='blue', marker='s', linestyle='None', markersize=6, label=f'Midpoint of rectangle: ({self.x}, {self.y})')
         point_to_check = mlines.Line2D([], [], color='red', marker='*', linestyle='None', markersize=6, label=f'Point to check: ({x_point}, {y_point})')
         
-        plt.legend(handles=[shape, midpoint_of_shape, point_to_check])
+        plt.legend(handles=[shape, midpoint_of_shape, point_to_check], loc="upper right", fontsize='medium')
+
 
         ax.set(title="Plot rectangle and point")
