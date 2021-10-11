@@ -21,22 +21,30 @@ Sven Erik Karlsson 13
 Sven Erik Lundin 39
 
 
-Sorted results: 
+Sorted results:
 
-Fredrika Ulven 10: Grade = 'F'
-Sven Erik Karlsson 13: Grade = 'F'
-Emil Johansson 23: Grade = 'E'
-Hanna Karlsson 23 : Grade = 'E'
-Ida Håkansson 23: Grade = 'E'
-Håkan Håkanson 24: Grade = 'E'
-Adam Gustafsson 25: Grade = 'E'
-Erik Eriksson 31: Grade = 'D'
-Jonas Jonasson 31: Grade = 'D'
-Bose Bosseson 32: Grade = 'D'
-Emma Boden 32: Grade = 'D'
-Karl Karlsson 32: Grade = 'D'
-Ella Ester 41: Grade = 'C'
-Ove Karlsten 41: Grade = 'C'
-Johan Johansson 42: Grade = 'C'
-Gore Bord 55: Grade = 'B'
-Jakob Kallander 65: Grade = 'A'
+Grade: F
+Fredrika Ulven 10
+Sven Erik Karlsson 13
+Grade: E
+Emil Johansson 23
+Hanna Karlsson 23 
+Ida Håkansson 23
+Håkan Håkanson 24
+Adam Gustafsson 25
+Grade: D
+Erik Eriksson 31
+Jonas Jonasson 31
+Bose Bosseson 32
+Emma Boden 32
+Karl Karlsson 32
+Björn Björnsson 39
+Sven Erik Lundin 39
+Grade: C
+Ella Ester 41
+Ove Karlsten 41
+Johan Johansson 42
+Grade: B
+Gore Bord 55
+Grade: A
+Jakob Kallander 65
