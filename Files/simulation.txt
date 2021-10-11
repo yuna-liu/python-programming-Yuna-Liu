@@ -1,60 +1,60 @@
-In total 10 dices: the frequency of 1 is: 1. And the probability is: 10.00%
+In total 10 rolls: the frequency of '1' is: 3. And the probability is: 30.00%
 
-In total 10 dices: the frequency of 2 is: 0. And the probability is: 0.00%
+In total 10 rolls: the frequency of '2' is: 0. And the probability is: 0.00%
 
-In total 10 dices: the frequency of 3 is: 3. And the probability is: 30.00%
+In total 10 rolls: the frequency of '3' is: 1. And the probability is: 10.00%
 
-In total 10 dices: the frequency of 4 is: 2. And the probability is: 20.00%
+In total 10 rolls: the frequency of '4' is: 4. And the probability is: 40.00%
 
-In total 10 dices: the frequency of 5 is: 2. And the probability is: 20.00%
+In total 10 rolls: the frequency of '5' is: 0. And the probability is: 0.00%
 
-In total 10 dices: the frequency of 6 is: 2. And the probability is: 20.00%
+In total 10 rolls: the frequency of '6' is: 2. And the probability is: 20.00%
 
-In total 100 dices: the frequency of 1 is: 14. And the probability is: 14.00%
+In total 100 rolls: the frequency of '1' is: 16. And the probability is: 16.00%
 
-In total 100 dices: the frequency of 2 is: 12. And the probability is: 12.00%
+In total 100 rolls: the frequency of '2' is: 25. And the probability is: 25.00%
 
-In total 100 dices: the frequency of 3 is: 16. And the probability is: 16.00%
+In total 100 rolls: the frequency of '3' is: 18. And the probability is: 18.00%
 
-In total 100 dices: the frequency of 4 is: 21. And the probability is: 21.00%
+In total 100 rolls: the frequency of '4' is: 17. And the probability is: 17.00%
 
-In total 100 dices: the frequency of 5 is: 17. And the probability is: 17.00%
+In total 100 rolls: the frequency of '5' is: 13. And the probability is: 13.00%
 
-In total 100 dices: the frequency of 6 is: 20. And the probability is: 20.00%
+In total 100 rolls: the frequency of '6' is: 11. And the probability is: 11.00%
 
-In total 1000 dices: the frequency of 1 is: 150. And the probability is: 15.00%
+In total 1000 rolls: the frequency of '1' is: 157. And the probability is: 15.70%
 
-In total 1000 dices: the frequency of 2 is: 170. And the probability is: 17.00%
+In total 1000 rolls: the frequency of '2' is: 166. And the probability is: 16.60%
 
-In total 1000 dices: the frequency of 3 is: 163. And the probability is: 16.30%
+In total 1000 rolls: the frequency of '3' is: 181. And the probability is: 18.10%
 
-In total 1000 dices: the frequency of 4 is: 162. And the probability is: 16.20%
+In total 1000 rolls: the frequency of '4' is: 181. And the probability is: 18.10%
 
-In total 1000 dices: the frequency of 5 is: 170. And the probability is: 17.00%
+In total 1000 rolls: the frequency of '5' is: 162. And the probability is: 16.20%
 
-In total 1000 dices: the frequency of 6 is: 185. And the probability is: 18.50%
+In total 1000 rolls: the frequency of '6' is: 153. And the probability is: 15.30%
 
-In total 10000 dices: the frequency of 1 is: 1678. And the probability is: 16.78%
+In total 10000 rolls: the frequency of '1' is: 1608. And the probability is: 16.08%
 
-In total 10000 dices: the frequency of 2 is: 1615. And the probability is: 16.15%
+In total 10000 rolls: the frequency of '2' is: 1661. And the probability is: 16.61%
 
-In total 10000 dices: the frequency of 3 is: 1729. And the probability is: 17.29%
+In total 10000 rolls: the frequency of '3' is: 1730. And the probability is: 17.30%
 
-In total 10000 dices: the frequency of 4 is: 1719. And the probability is: 17.19%
+In total 10000 rolls: the frequency of '4' is: 1705. And the probability is: 17.05%
 
-In total 10000 dices: the frequency of 5 is: 1648. And the probability is: 16.48%
+In total 10000 rolls: the frequency of '5' is: 1542. And the probability is: 15.42%
 
-In total 10000 dices: the frequency of 6 is: 1611. And the probability is: 16.11%
+In total 10000 rolls: the frequency of '6' is: 1754. And the probability is: 17.54%
 
-In total 100000 dices: the frequency of 1 is: 16821. And the probability is: 16.82%
+In total 100000 rolls: the frequency of '1' is: 16576. And the probability is: 16.58%
 
-In total 100000 dices: the frequency of 2 is: 16584. And the probability is: 16.58%
+In total 100000 rolls: the frequency of '2' is: 16775. And the probability is: 16.78%
 
-In total 100000 dices: the frequency of 3 is: 16714. And the probability is: 16.71%
+In total 100000 rolls: the frequency of '3' is: 16736. And the probability is: 16.74%
 
-In total 100000 dices: the frequency of 4 is: 16724. And the probability is: 16.72%
+In total 100000 rolls: the frequency of '4' is: 16609. And the probability is: 16.61%
 
-In total 100000 dices: the frequency of 5 is: 16546. And the probability is: 16.55%
+In total 100000 rolls: the frequency of '5' is: 16768. And the probability is: 16.77%
 
-In total 100000 dices: the frequency of 6 is: 16611. And the probability is: 16.61%
+In total 100000 rolls: the frequency of '6' is: 16536. And the probability is: 16.54%
 
